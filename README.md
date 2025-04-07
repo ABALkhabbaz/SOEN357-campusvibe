@@ -1,1 +1,1 @@
-# soen357-campusvibe
+# SOEN357-campusvibe
