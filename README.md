@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# CampusVibe
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CampusVibe is a simple event discovery and reminder platform designed to help Concordia students stay informed and engaged with on-campus events. It solves the problem of scattered event information by providing a centralized, easy-to-use interface that students can access on any device.
 
-## Available Scripts
+## Project Overview
 
-In the project directory, you can run:
+This project was developed as part of SOEN 357 – Human-Computer Interaction. The goal is to apply UI/UX principles and design methods to build a usable prototype website that improves student engagement at Concordia.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Browse upcoming campus events
+- Filter events by type (e.g., academic, social, club)
+- Event reminder notifications
+- Manual event submission for student clubs and organizers
+- Simple and user-friendly web interface
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- HTML / CSS / JavaScript
+- React (Frontend)
+- Node.js (Backend)
+- Firebase (Backend services, optionally)
+- GitHub (Version control)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Final Deliverables
 
-### `npm run build`
+- Functional website prototype
+- GitHub repository with all code and documentation
+- User research and observations report
+- Final project report (including methods, results, and discussion)
+- UI design based on HCI principles
+- Basic user testing and evaluation summary
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Team
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Abdelrahman Alkhabbaz  40258582
+- Ali Eldeeb 40237796
+- AbdelRahman Eldeeb 40245477
+- Mostafa Mohamed 40201893
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## License
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is for educational purposes only (SOEN 357 at Concordia University).
