@@ -1,0 +1,97 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #83002a;
+    padding: 0 2rem;
+    height: 56px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-left {
+    flex: 1;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #d9b1c3;
+    /* consistent soft hover */
+}
+
+.navbar-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.navbar-center a {
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-center a:hover {
+    color: #d9b1c3;
+    /* updated hover */
+}
+
+.navbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navbar-login {
+    background-color: white;
+    color: #83002a;
+    padding: 6px 16px;
+    border-radius: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.navbar-login:hover {
+    background-color: #d9b1c3;
+    /* soft hover */
+    color: #83002a;
+}
+
+/* Optional Global Smoothness */
+.navbar-center a,
+.navbar-login,
+.navbar-brand {
+    transition: all 0.3s ease;
+}
+
+* {
+    transition: all 0.25s ease;
+    -webkit-font-smoothing: antialiased;
+}
+
+.navbar-login {
+    background-color: white;
+    color: #83002a;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 18px;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navbar-login:hover {
+    background-color: #f0c5d4;
+    color: #83002a;
+}
