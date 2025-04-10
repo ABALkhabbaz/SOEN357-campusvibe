@@ -3,36 +3,6 @@ import axios from "axios";
 import "../css/Events.css";
 import { useNavigate, Link } from "react-router-dom";
 
-const allEvents = [
-    {
-        id: 1,
-        title: "Chess Club Tournament",
-        date: "April 25, 2025",
-        location: "Library Hall - Room 101",
-        description: "Join us for a friendly chess tournament open to all skill levels.",
-        category: "Club",
-        image: "/images/chess.jpg"
-    },
-    {
-        id: 2,
-        title: "Tech Talk: Future of AI",
-        date: "April 28, 2025",
-        location: "John Molson Auditorium",
-        description: "A guest speaker discusses how AI will shape the future.",
-        category: "Academic",
-        image: "/images/ai.jpg"
-    },
-    {
-        id: 3,
-        title: "Spring Social BBQ",
-        date: "May 2, 2025",
-        location: "Loyola Campus - Backyard",
-        description: "Free food, games, and networking with other students.",
-        category: "Social",
-        image: "/images/bbq.jpg"
-    }
-];
-
 const MyEvents = ({ user }) => {
     const [myEvents, setMyEvents] = useState([]);
     const [message, setMessage] = useState('');
@@ -43,15 +13,19 @@ const MyEvents = ({ user }) => {
             navigate('/login');
             return;
         }
-
-        axios.get(`http://localhost:3001/my-events/${user.email}`)
-            .then(res => {
-                const registeredIds = res.data || [];
-                const filtered = allEvents.filter(event => registeredIds.includes(event.id));
-                setMyEvents(filtered);
-            })
-            .catch(err => console.error(err));
+    
+        const fetchMyEvents = async () => {
+            try {
+                const res = await axios.get(`http://localhost:3001/my-events/${user.email}`);
+                setMyEvents(res.data); // directly set full event objects
+            } catch (err) {
+                console.error("Error fetching my events:", err);
+            }
+        };
+    
+        fetchMyEvents();
     }, [user, navigate]);
+    
 
     const handleCancel = async (eventId) => {
         try {
@@ -59,11 +33,11 @@ const MyEvents = ({ user }) => {
                 email: user.email,
                 eventId
             });
-            setMyEvents(myEvents.filter(event => event.id !== eventId));
+            setMyEvents(prev => prev.filter(event => event.id !== eventId));
             setMessage('Registration Cancelled');
             setTimeout(() => setMessage(''), 2000);
         } catch (error) {
-            console.error(error);
+            console.error("Cancellation error:", error);
         }
     };
 
