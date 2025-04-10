@@ -3,36 +3,6 @@ import axios from "axios";
 import "../css/Events.css";
 import { useNavigate, Link } from "react-router-dom";
 
-const allEvents = [
-    {
-        id: 1,
-        title: "Chess Club Tournament",
-        date: "April 25, 2025",
-        location: "Library Hall - Room 101",
-        description: "Join us for a friendly chess tournament open to all skill levels.",
-        category: "Club",
-        image: "/images/chess.jpg"
-    },
-    {
-        id: 2,
-        title: "Tech Talk: Future of AI",
-        date: "April 28, 2025",
-        location: "John Molson Auditorium",
-        description: "A guest speaker discusses how AI will shape the future.",
-        category: "Academic",
-        image: "/images/ai.jpg"
-    },
-    {
-        id: 3,
-        title: "Spring Social BBQ",
-        date: "May 2, 2025",
-        location: "Loyola Campus - Backyard",
-        description: "Free food, games, and networking with other students.",
-        category: "Social",
-        image: "/images/bbq.jpg"
-    }
-];
-
 const MyEvents = ({ user }) => {
     const [myEvents, setMyEvents] = useState([]);
     const [message, setMessage] = useState('');
@@ -44,11 +14,10 @@ const MyEvents = ({ user }) => {
             return;
         }
 
+        // ✅ This now returns full event objects, no need to fetch /events separately
         axios.get(`http://localhost:3001/my-events/${user.email}`)
             .then(res => {
-                const registeredIds = res.data || [];
-                const filtered = allEvents.filter(event => registeredIds.includes(event.id));
-                setMyEvents(filtered);
+                setMyEvents(res.data); // ✅ full events
             })
             .catch(err => console.error(err));
     }, [user, navigate]);

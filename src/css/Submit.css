@@ -1,0 +1,51 @@
+.submit-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .submit-container h2 {
+    margin-bottom: 1rem;
+    color: #800000;
+  }
+  
+  .submit-container input,
+  .submit-container textarea,
+  .submit-container button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  
+  .success-msg {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .preview-wrapper {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .preview-wrapper img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .image-preview {
+    max-width: 200px;   /* or any size you want */
+    text-align: center;
+    max-height: 200px;
+    object-fit: cover;  
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  

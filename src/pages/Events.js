@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/Events.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Events = ({ user }) => {
     const navigate = useNavigate();
+    const [events, setEvents] = useState([]);
     const [message, setMessage] = useState('');
     const [showToast, setShowToast] = useState(false);
 
-    const events = [
+    // Hardcoded base events (keep them!)
+    const hardcodedEvents = [
         {
             id: 1,
             title: "Chess Club Tournament",
@@ -37,6 +39,21 @@ const Events = ({ user }) => {
             image: "/images/bbq.jpg"
         }
     ];
+
+    useEffect(() => {
+        const fetchAllEvents = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/events');
+                setEvents(response.data); // Backend already returns both hardcoded + submitted
+            } catch (error) {
+                console.error("Error fetching events:", error);
+                setEvents(hardcodedEvents); // fallback to hardcoded
+            }
+        };
+    
+        fetchAllEvents();
+    }, []);
+    
 
     const handleRegister = async (event) => {
         if (!user) {
