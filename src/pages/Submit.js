@@ -12,6 +12,7 @@ function Submit() {
 
   const [image, setImage] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
@@ -20,8 +21,7 @@ function Submit() {
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
+    setImage(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -44,6 +44,8 @@ function Submit() {
       if (!res.ok) throw new Error('Server error');
 
       setSubmitted(true);
+      setShowToast(true);
+
       setEvent({
         name: '',
         description: '',
@@ -53,6 +55,8 @@ function Submit() {
       });
       setImage(null);
       fileInputRef.current.value = '';
+      
+      setTimeout(() => setShowToast(false), 2000); // Hide toast after 2s
     } catch (err) {
       console.error('Error submitting event:', err);
       alert('Failed to submit event. Please try again.');
@@ -62,7 +66,10 @@ function Submit() {
   return (
     <div className="submit-container">
       <h2>Submit Your Event</h2>
-      {submitted && <p className="success-msg">Event submitted successfully!</p>}
+
+      {showToast && (
+        <div className="toast-message">Event submitted successfully!</div>
+      )}
 
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input
@@ -109,7 +116,7 @@ function Submit() {
           ref={fileInputRef}
           required
         />
-        <button type="submit">Submit Event</button>
+        <button type="submit" className="register-btn">Submit Event</button>
       </form>
     </div>
   );
