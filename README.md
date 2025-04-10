@@ -1,6 +1,6 @@
 # CampusVibe
 
-CampusVibe is a simple event discovery and reminder platform designed to help Concordia students stay informed and engaged with on-campus events. It solves the problem of scattered event information by providing a centralized, easy-to-use interface that students can access on any device.
+CampusVibe is a simple event discovery and registration platform designed to help Concordia students stay informed and engaged with on-campus events. It solves the problem of scattered event information by providing a centralized, easy-to-use interface that students can access on any device.
 
 ## Project Overview
 
@@ -9,27 +9,31 @@ This project was developed as part of SOEN 357 – Human-Computer Interaction. T
 ## Features
 
 - Browse upcoming campus events
-- Filter events by type (e.g., academic, social, club)
-- Event reminder notifications
-- Manual event submission for student clubs and organizers
-- Simple and user-friendly web interface
+- Register and Cancel registration for events
+- My Events page showing only registered events
+- Dynamic Navbar that changes based on login state
+- Clean success notifications for actions (register / cancel)
+- Login and Signup functionality
+- Manual event submission page
+- Responsive and user-friendly web interface
+- Consistent UI based on Concordia University style
 
 ## Tech Stack
 
 - HTML / CSS / JavaScript
 - React (Frontend)
-- Node.js (Backend)
-- Firebase (Backend services, optionally)
+- Node.js (Backend with Express)
+- File-based storage using users.txt (Backend)
 - GitHub (Version control)
 
 ## Final Deliverables
 
-- Functional website prototype
+- Fully functional website prototype
 - GitHub repository with all code and documentation
-- User research and observations report
-- Final project report (including methods, results, and discussion)
-- UI design based on HCI principles
+- UI/UX design following HCI principles
 - Basic user testing and evaluation summary
+- User research and observation report
+- Final project report (methods, results, discussion)
 
 ## Team
 
