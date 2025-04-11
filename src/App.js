@@ -6,12 +6,37 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import MyEvents from "./pages/MyEvents";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-  const [user, setUser] = useState(null);  // null = Not Logged In
-
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+  
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
+  
+  useEffect(() => {
+    const checkBackend = async () => {
+      try {
+        await axios.get("http://localhost:3001/test-db");
+      } catch (err) {
+        localStorage.removeItem("user");
+        setUser(null);
+      }
+    };
+  
+    checkBackend();
+  }, []);
+  
+  
   return (
     <Router>
       <Navbar user={user} setUser={setUser} />

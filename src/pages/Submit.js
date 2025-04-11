@@ -56,27 +56,39 @@ const Submit = ({ user }) => {
       if (response?.data?.message) {
         setMessage(response.data.message);
         setShowToast(true);
+      
+        // Stay on page and clear fields slowly
         setTimeout(() => {
           setShowToast(false);
-          navigate("/events");
-        }, 2500);
-      } else {
+          setFormData({
+            title: "",
+            description: "",
+            location: "",
+            date: "",
+            time: "",
+            organizer: "",
+            category: "Student",
+            imageFile: null,
+          });
+        }, 3500); // gives 3.5 seconds to read message
+      }
+       else {
         setMessage("Event submitted, but no confirmation message.");
         setShowToast(true);
-        setTimeout(() => setShowToast(false), 2500);
+        setTimeout(() => setShowToast(false), 3500);
       }
     } catch (err) {
       console.error("Submission error:", err);
       setMessage("Failed to submit event.");
       setShowToast(true);
-      setTimeout(() => setShowToast(false), 2500);
+      setTimeout(() => setShowToast(false), 3500);
     }
   };
 
   return (
     <div className="submit-container">
       <h2>Submit a New Event</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         <div className="submit-row">
           <input
             type="text"
