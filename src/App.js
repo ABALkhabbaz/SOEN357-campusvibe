@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Submit from "./pages/Submit";
@@ -17,7 +17,7 @@ function App() {
     axios.get('http://localhost:3001/users')
       .then(res => {
         const users = res.data;
-        const loggedInUser = users.find(u => u.isLoggedIn);  // Check isLoggedIn
+        const loggedInUser = users.find(u => u.isLoggedIn);
         if (loggedInUser) {
           setUser(loggedInUser);
         }
@@ -30,12 +30,14 @@ function App() {
       <Navbar user={user} setUser={setUser} />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* Redirect root to login or events */}
+        <Route path="/" element={user ? <Navigate to="/events" /> : <Home />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/events" element={<Events user={user} />} />
         <Route path="/submit" element={<Submit />} />
         <Route path="/myevents" element={<MyEvents user={user} />} />
-        <Route path="/login" element={<Login setUser={setUser} />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );
