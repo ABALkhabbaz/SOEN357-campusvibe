@@ -20,15 +20,36 @@ This project was developed as part of SOEN 357 – Human-Computer Interaction. T
 
 ## Tech Stack
 
-- HTML / CSS / JavaScript
-- React (Frontend)
-- Node.js (Backend with Express)
-- File-based storage using users.txt (Backend)
-- GitHub (Version control)
+- **Frontend:** React, HTML, CSS, JavaScript
+- **Backend:** Node.js + Express
+- **Database:** PostgreSQL (via `pg` and `pg-pool`)
+- **Image Upload:** Multer (saved locally)
+- **Version Control:** Git + GitHub
+
+
+## Setup Instructions
+
+1. Clone the repo
+2. Run `npm install` in both `frontend` and `backend`
+3. Set up a local PostgreSQL database:
+   - Create a `campusvibe` database
+   - Run the schema in `backend/schema.sql`
+4. Create a `db.js` file with your credentials:
+   ```js
+   const pool = new Pool({
+     user: 'your_username',
+     host: 'localhost',
+     database: 'campusvibe',
+     password: '',
+     port: 5432
+   });
+5. Run the backend: node server.js
+6. Run the frontend: npm start   
+
 
 ## Final Deliverables
 
-- Fully functional website prototype
+- Functional event discovery and registration website
 - GitHub repository with all code and documentation
 - UI/UX design following HCI principles
 - Basic user testing and evaluation summary
