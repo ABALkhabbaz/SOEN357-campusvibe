@@ -11,12 +11,21 @@ app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
 
 // Setup multer for image parsing
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname, '../public/images'));
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname); // You could add Date.now() for uniqueness
+    }
+  });
+  const upload = multer({ storage });
 
 // ========== USER ROUTES ==========
 
+
 // 🔁 New REGISTER route using PostgreSQL
+
 app.post('/register', async (req, res) => {
     const { fullname, email, password } = req.body;
 
@@ -45,7 +54,20 @@ app.post('/register', async (req, res) => {
 
 // Still using users.txt for logout/login (optional to convert to DB later)
 const usersFile = path.join(__dirname, 'users.txt');
-
+// ✅ Clear all login states on server start
+fs.readFile(usersFile, 'utf8', (err, data) => {
+    if (!err && data) {
+      const users = JSON.parse(data).map(user => ({
+        ...user,
+        isLoggedIn: false
+      }));
+  
+      fs.writeFile(usersFile, JSON.stringify(users), err => {
+        if (err) console.error("❌ Failed to reset login states:", err);
+        else console.log("✅ All users logged out on server start.");
+      });
+    }
+  });
 app.get('/users', (req, res) => {
     fs.readFile(usersFile, 'utf8', (err, data) => {
         if (err) return res.status(500).send('Error reading users');
@@ -105,11 +127,11 @@ app.post('/submit-event', upload.single('image'), async (req, res) => {
         const { title, description, location, date, time, organizer, category } = formData;
         const imageName = req.file ? req.file.originalname : 'empty.png';
 
-        await pool.query(
-            `INSERT INTO events (title, description, location, date, time, organizer, category, image)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
-            [title, description, location, date, time, organizer, category, `/images/${imageName}`]
-        );
+    await pool.query(
+  `INSERT INTO events (title, description, location, date, time, organizer, category, image)
+   VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+  [title, description, location, date, time, organizer, category, `/images/${imageName}`]
+);
 
         res.json({ message: 'Event submitted successfully!' });
     } catch (err) {
