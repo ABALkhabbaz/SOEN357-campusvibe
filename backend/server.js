@@ -54,7 +54,7 @@ app.post('/register', async (req, res) => {
 
 // Still using users.txt for logout/login (optional to convert to DB later)
 //const usersFile = path.join(__dirname, 'users.txt');
-// ✅ Clear all login states on server start
+//  Clear all login states on server start
 
 
 
@@ -190,5 +190,5 @@ app.get('/test-db', async (req, res) => {
 
 // Start server
 app.listen(3001, () => {
-    console.log('✅ Server running on http://localhost:3001');
+    console.log('Server running on http://localhost:3001');
 });
