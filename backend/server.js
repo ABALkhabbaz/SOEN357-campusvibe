@@ -46,6 +46,23 @@ app.post('/register', async (req, res) => {
 // Still using users.txt for logout/login (optional to convert to DB later)
 const usersFile = path.join(__dirname, 'users.txt');
 
+
+// ✅ Clear all login states on server start
+fs.readFile(usersFile, 'utf8', (err, data) => {
+  if (!err && data) {
+    const users = JSON.parse(data).map(user => ({
+      ...user,
+      isLoggedIn: false
+    }));
+
+    fs.writeFile(usersFile, JSON.stringify(users), err => {
+      if (err) console.error("❌ Failed to reset login states:", err);
+      else console.log("✅ All users logged out on server start.");
+    });
+  }
+});
+
+
 app.get('/users', (req, res) => {
     fs.readFile(usersFile, 'utf8', (err, data) => {
         if (err) return res.status(500).send('Error reading users');
