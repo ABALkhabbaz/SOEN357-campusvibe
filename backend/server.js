@@ -53,28 +53,10 @@ app.post('/register', async (req, res) => {
 });
 
 // Still using users.txt for logout/login (optional to convert to DB later)
-const usersFile = path.join(__dirname, 'users.txt');
+//const usersFile = path.join(__dirname, 'users.txt');
 // ✅ Clear all login states on server start
-fs.readFile(usersFile, 'utf8', (err, data) => {
-    if (!err && data) {
-      const users = JSON.parse(data).map(user => ({
-        ...user,
-        isLoggedIn: false
-      }));
-  
-      fs.writeFile(usersFile, JSON.stringify(users), err => {
-        if (err) console.error("❌ Failed to reset login states:", err);
-        else console.log("✅ All users logged out on server start.");
-      });
-    }
-  });
-app.get('/users', (req, res) => {
-    fs.readFile(usersFile, 'utf8', (err, data) => {
-        if (err) return res.status(500).send('Error reading users');
-        const users = data ? JSON.parse(data) : [];
-        res.json(users);
-    });
-});
+
+
 
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
@@ -100,24 +82,11 @@ app.post('/login', async (req, res) => {
     }
 });
 
-
 app.post('/logout', (req, res) => {
-    const { email } = req.body;
-
-    fs.readFile(usersFile, 'utf8', (err, data) => {
-        let users = data ? JSON.parse(data) : [];
-        const userIndex = users.findIndex(u => u.email === email);
-
-        if (userIndex === -1) return res.status(404).send('User not found');
-
-        users[userIndex].isLoggedIn = false;
-
-        fs.writeFile(usersFile, JSON.stringify(users), err => {
-            if (err) return res.status(500).send('Error saving logout');
-            res.send('Logged out successfully');
-        });
-    });
+    res.send("Logged out successfully");
 });
+
+
 
 // ========== EVENT ROUTES ==========
 

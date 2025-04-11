@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/Submit.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Submit = () => {
+const Submit = ({ user }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) navigate('/login');
+  }, [user, navigate]);
 
   const [formData, setFormData] = useState({
     title: "",

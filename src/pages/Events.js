@@ -53,9 +53,17 @@ const Events = ({ user }) => {
             <img src={event.image} alt={event.title} className="event-image" />
             <div className="event-content">
               <h2>{event.title}</h2>
-              <p className="event-date">{event.date} | {event.location}</p>
+              <p className="event-date">
+                {new Date(event.date).toLocaleDateString('en-CA', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}{" "}
+                | {event.location}
+              </p>
               <p className="event-description">{event.description}</p>
-              <span className="event-category">{event.category}</span>
+              <span className="event-category">{event.organizer}</span>
+
 
               <button
                 onClick={() => handleRegister(event)}

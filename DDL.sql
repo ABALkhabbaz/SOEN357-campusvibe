@@ -23,4 +23,6 @@ CREATE TABLE registrations (
   user_email VARCHAR(100),
   event_id INTEGER,
   UNIQUE (user_email, event_id)
+  FOREIGN KEY (user_email) REFERENCES users(email) ON DELETE CASCADE,
+  FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE
 );
