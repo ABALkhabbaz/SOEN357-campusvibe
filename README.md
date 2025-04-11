@@ -66,3 +66,10 @@ This project was developed as part of SOEN 357 – Human-Computer Interaction. T
 ## License
 
 This project is for educational purposes only (SOEN 357 at Concordia University).
+
+
+## Demo Video
+
+[Watch the CampusVibe demo on YouTube] ([click here](https://youtu.be/UEWHJ1Hy2lo))
+
+
