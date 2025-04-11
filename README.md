@@ -30,7 +30,7 @@ This project was developed as part of SOEN 357 – Human-Computer Interaction. T
 ## Setup Instructions
 
 1. Clone the repo
-2. Run `npm install` in both `frontend` and `backend`
+2. Run `npm install` in both frontend and backend
 3. Set up a local PostgreSQL database:
    - Create a `campusvibe` database
    - Run the schema in `backend/schema.sql`
