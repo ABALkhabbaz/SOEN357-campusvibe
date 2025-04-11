@@ -33,7 +33,7 @@ This project was developed as part of SOEN 357 – Human-Computer Interaction. T
 2. Run `npm install` in both frontend and backend
 3. Set up a local PostgreSQL database:
    - Create a `campusvibe` database
-   - Run the schema in `backend/schema.sql`
+   - Run the schema in `DDL.sql`
 4. Create a `db.js` file with your credentials:
    ```js
    const pool = new Pool({
@@ -43,8 +43,9 @@ This project was developed as part of SOEN 357 – Human-Computer Interaction. T
      password: '',
      port: 5432
    });
-5. Run the backend: node server.js
-6. Run the frontend: npm start   
+   module.exports = pool;
+5. Start the backend server: node backend/server.js
+6. Start the frontend app: npm start
 
 
 ## Final Deliverables
@@ -63,13 +64,11 @@ This project was developed as part of SOEN 357 – Human-Computer Interaction. T
 - AbdelRahman Eldeeb 40245477
 - Mostafa Mohamed 40201893
 
-## License
-
-This project is for educational purposes only (SOEN 357 at Concordia University).
-
-
 ## Demo Video
 
 [Watch the CampusVibe demo on YouTube] ([click here](https://youtu.be/UEWHJ1Hy2lo))
 
+## License
+
+This project is for educational purposes only (SOEN 357 at Concordia University).
 
