@@ -35,19 +35,18 @@ const Signup = () => {
         }
 
         try {
-            await axios.post('http://localhost:3001/register', {
+            const response = await axios.post('http://localhost:3001/register', {
                 fullname: formData.fullName,
                 email: formData.email,
                 password: formData.password,
             });
 
-            setSuccessMessage('Account created successfully! Redirecting to Login...');
+            setSuccessMessage(response.data.message || 'Account created successfully! Redirecting...');
             setTimeout(() => {
                 navigate('/login');
-            }, 2000); // 2 seconds delay
-
+            }, 2000);
         } catch (error) {
-            setErrorMessage(error.response.data);
+            setErrorMessage(error?.response?.data?.message || 'Signup failed. Try again.');
         }
     };
 
@@ -98,8 +97,8 @@ const Signup = () => {
                     <button type="submit">Sign Up</button>
                 </form>
 
-                {successMessage && <p style={{ color: 'green', marginTop: '10px' }}>{successMessage}</p>}
-                {errorMessage && <p style={{ color: 'red', marginTop: '10px' }}>{errorMessage}</p>}
+                {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
                 <p className="redirect">
                     Already have an account? <Link to="/login">Sign in</Link>

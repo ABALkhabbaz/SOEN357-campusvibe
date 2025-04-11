@@ -1,0 +1,96 @@
+.submit-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-family: 'Georgia', serif;
+  }
+  
+  .submit-container h2 {
+    color: #7b1e3b;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 26px;
+  }
+  
+  .submit-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .submit-container form input,
+  .submit-container form textarea,
+  .submit-container form input[type="file"] {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    font-family: 'Georgia', serif;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fdfdfd;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
+    color: #333;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+  }
+  
+  .submit-container label {
+    font-size: 16px;
+    color: #444;
+    font-family: 'Georgia', serif;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: normal;
+  }
+  
+  .submit-container button {
+    background-color: #7b1e3b;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    font-family: 'Georgia', serif;
+  }
+  
+  .submit-container button:hover {
+    background-color: #5a152b;
+  }
+  
+  ::placeholder {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .toast-message {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #7b1e3b;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-weight: bold;
+    z-index: 999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: slideUpFade 0.3s ease-in-out;
+  }
+  
+  @keyframes slideUpFade {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
