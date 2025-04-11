@@ -58,7 +58,7 @@ const MyEvents = ({ user }) => {
                 <div className="events-list">
                     {myEvents.map(event => (
                         <div className="event-card" key={event.id}>
-                            <img src={event.image} alt={event.title} className="event-image" />
+                            <img src={`http://localhost:3001${event.image}`} alt={event.title} className="event-image" />
                             <div className="event-content">
                                 <h2>{event.title}</h2>
                                 <p className="event-date">{event.date} | {event.location}</p>

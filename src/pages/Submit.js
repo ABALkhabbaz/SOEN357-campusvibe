@@ -17,6 +17,9 @@ const Submit = () => {
     imageFile: null,
   });
 
+  const [message, setMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -28,31 +31,41 @@ const Submit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const today = new Date().toISOString().split("T")[0];
     if (formData.date < today) {
-      alert("Date cannot be in the past.");
+      setMessage("Date cannot be in the past.");
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 2500);
       return;
     }
-  
+
     try {
       const payload = new FormData();
       payload.append("data", JSON.stringify(formData));
       if (formData.imageFile) {
         payload.append("image", formData.imageFile);
       }
-  
+
       const response = await axios.post("http://localhost:3001/submit-event", payload);
-      
+
       if (response?.data?.message) {
-        alert(response.data.message);
-        navigate("/events");
+        setMessage(response.data.message);
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+          navigate("/events");
+        }, 2500);
       } else {
-        alert("Event submitted, but no confirmation message.");
+        setMessage("Event submitted, but no confirmation message.");
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 2500);
       }
     } catch (err) {
       console.error("Submission error:", err);
-      alert("Failed to submit event.");
+      setMessage("Failed to submit event.");
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 2500);
     }
   };
 
@@ -114,14 +127,12 @@ const Submit = () => {
         />
 
         <label>Upload an image:</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
+        <input type="file" accept="image/*" onChange={handleFileChange} />
 
         <button type="submit">Submit Event</button>
       </form>
+
+      {showToast && <div className="toast-message">{message}</div>}
     </div>
   );
 };
